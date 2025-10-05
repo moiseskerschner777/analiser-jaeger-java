@@ -1,0 +1,8 @@
+/home/moises.kerschner/Documents/moises/utils/analiser-jaeger-java/src/main/java/io/perfseer/App.java
+/home/moises.kerschner/Documents/moises/utils/analiser-jaeger-java/src/main/java/io/perfseer/aggregate/Aggregator.java
+/home/moises.kerschner/Documents/moises/utils/analiser-jaeger-java/src/main/java/io/perfseer/api/ScoreResource.java
+/home/moises.kerschner/Documents/moises/utils/analiser-jaeger-java/src/main/java/io/perfseer/cli/MainCommand.java
+/home/moises.kerschner/Documents/moises/utils/analiser-jaeger-java/src/main/java/io/perfseer/config/PerfConfig.java
+/home/moises.kerschner/Documents/moises/utils/analiser-jaeger-java/src/main/java/io/perfseer/indexer/CodeIndexer.java
+/home/moises.kerschner/Documents/moises/utils/analiser-jaeger-java/src/main/java/io/perfseer/ingest/JaegerClient.java
+/home/moises.kerschner/Documents/moises/utils/analiser-jaeger-java/src/main/java/io/perfseer/ml/IsolationScorer.java
