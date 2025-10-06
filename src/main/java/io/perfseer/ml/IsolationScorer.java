@@ -2,12 +2,11 @@ package io.perfseer.ml;
 
 import io.perfseer.aggregate.Aggregator;
 import jakarta.enterprise.context.ApplicationScoped;
-import smile.anomaly.IsolationForest;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import smile.anomaly.IsolationForest;
 
 @ApplicationScoped
 public class IsolationScorer {

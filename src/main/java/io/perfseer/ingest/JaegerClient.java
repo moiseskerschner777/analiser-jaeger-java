@@ -9,9 +9,7 @@ import io.vertx.mutiny.ext.web.client.HttpResponse;
 import io.vertx.mutiny.ext.web.client.WebClient;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-
 import java.net.URI;
-import java.util.Map;
 
 @ApplicationScoped
 public class JaegerClient {
@@ -31,15 +29,24 @@ public class JaegerClient {
     }
 
     public Uni<JsonObject> fetchTraces(String service, String lookback) {
+        return fetchTraces(service, lookback, null, null);
+    }
+
+    public Uni<JsonObject> fetchTraces(String service, String lookback, Integer limit, Boolean prettyPrint) {
         String path = base.getPath() + cfg.jaegerQueryPath();
-        Map<String, String> query = Map.of(
-                "service", service != null ? service : cfg.serviceName(),
-                "lookback", lookback != null ? lookback : cfg.lookbackDefault()
-        );
-        return client.get(path)
-                .addQueryParam("service", query.get("service"))
-                .addQueryParam("lookback", query.get("lookback"))
-                .send()
+        var request = client.get(path)
+                .addQueryParam("service", service != null ? service : cfg.serviceName())
+                .addQueryParam("lookback", lookback != null ? lookback : cfg.lookbackDefault());
+
+        if (limit != null) {
+            request.addQueryParam("limit", String.valueOf(limit));
+        }
+
+        if (prettyPrint != null && prettyPrint) {
+            request.addQueryParam("prettyPrint", "true");
+        }
+
+        return request.send()
                 .onItem().transform(HttpResponse::bodyAsJsonObject);
     }
 }

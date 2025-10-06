@@ -3,14 +3,18 @@ package io.perfseer.aggregate;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import jakarta.enterprise.context.ApplicationScoped;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 @ApplicationScoped
 public class Aggregator {
 
     public static class Feature {
-        public String key; // endpoint or db op
+        public String key;
         public long count;
         public double errorRate;
         public double p50;
@@ -29,7 +33,6 @@ public class Aggregator {
     }
 
     public List<Feature> aggregate(JsonObject jaegerResponse) {
-        // Minimal parsing: Jaeger /api/traces data: { data: [ {spans:[{operationName, duration, tags:[]}]} ] }
         Map<String, List<Long>> latenciesByOp = new HashMap<>();
         Map<String, Long> errorsByOp = new HashMap<>();
         Map<String, Long> countsByOp = new HashMap<>();
